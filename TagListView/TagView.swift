@@ -169,11 +169,12 @@ open class TagView: UIButton {
     
     private func setupView() {
         titleLabel?.lineBreakMode = titleLineBreakMode
-
+        titleLabel?.numberOfLines = 1
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.minimumScaleFactor = 0.7
         frame.size = intrinsicContentSize
         addSubview(removeButton)
         removeButton.tagView = self
-        
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
         self.addGestureRecognizer(longPress)
     }

@@ -198,7 +198,11 @@ open class TagListView: UIView {
     }
     
     open var listHeight: CGFloat {
-        return tagViewHeight * CGFloat(rows)
+        var height = CGFloat(rows) * (tagViewHeight + marginY)
+        if rows > 0 {
+            height -= marginY
+        }
+        return height
     }
     
     @IBOutlet open weak var delegate: TagListViewDelegate?
@@ -290,11 +294,7 @@ open class TagListView: UIView {
     // MARK: - Manage tags
     
     override open var intrinsicContentSize: CGSize {
-        var height = CGFloat(rows) * (tagViewHeight + marginY)
-        if rows > 0 {
-            height -= marginY
-        }
-        return CGSize(width: frame.width, height: height)
+        return CGSize(width: frame.width, height: listHeight)
     }
     
     private func createNewTagView(_ title: String) -> TagView {

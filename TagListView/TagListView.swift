@@ -197,12 +197,16 @@ open class TagListView: UIView {
         }
     }
     
+    open var listHeight: CGFloat {
+        return tagViewHeight * CGFloat(rows)
+    }
+    
     @IBOutlet open weak var delegate: TagListViewDelegate?
     
     open private(set) var tagViews: [TagView] = []
     private(set) var tagBackgroundViews: [UIView] = []
     private(set) var rowViews: [UIView] = []
-    open private(set) var tagViewHeight: CGFloat = 0
+    private(set) var tagViewHeight: CGFloat = 0
     private(set) var rows = 0 {
         didSet {
             invalidateIntrinsicContentSize()
